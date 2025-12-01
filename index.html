@@ -47,7 +47,7 @@ body {
 }
 
 .emoji-blink {
-    animation: blink 0.5s infinite; /* Simple blinking animation for emojis */
+    animation: blink 1s infinite; /* Simple blinking animation for emojis */
 }
 
 @keyframes blink {
@@ -314,7 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function animateTopBar() {
         if (currentTopBar === 1) {
             // Slide to the second message (Dec 4 deadline)
-            topBarWrapper.style.transform = 'translateY(-${topBarHeight}px)';
+            topBarWrapper.style.transform = `translateY(-${topBarHeight}px)`;
             currentTopBar = 2;
         } else {
             // Slide back to the first message (BFCM deal)
@@ -324,7 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Change the text every 5 seconds
-    setInterval(animateTopBar, 5000);
+    setInterval(animateTopBar, 3000);
 
 
     // --- 2. Image Carousel/Slider Functionality ---
@@ -338,7 +338,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Helper function to set the slide position
     const setSlidePosition = (index) => {
-        track.style.transform = 'translateX(-' + (index * slideWidth) + 'px)';
+        track.style.transform = 'tanslateX(-' + (index * slideWidth) + 'px)';
     };
 
     // Initialize position
