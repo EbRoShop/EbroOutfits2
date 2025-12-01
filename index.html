@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlexiQuor - Power & Performance Collection</title>
+    <link rel="stylesheet" href="styles.css">
+
+<style>
+/* General Resets and Body Styling */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    overflow-x: hidden; /* Prevent horizontal scroll from the carousel */
+}
+
+/* 🦌 Top Notification Bar Styling */
+.top-bar-container {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 14px;
+    height: 40px; /* Fixed height to prevent layout shift */
+    overflow: hidden; /* Hide the second text until it slides in */
+    position: relative;
+}
+
+.top-bar-text-wrapper {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    transition: transform 0.5s ease-in-out; /* Animation for sliding text */
+}
+
+.top-bar-text {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.emoji-blink {
+    animation: blink 0.5s infinite; /* Simple blinking animation for emojis */
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* 🛒 Header/Navigation Styling */
+header {
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    background-color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #FF6600; /* Example brand color */
+}
+
+.logo-emoji {
+    font-size: 28px;
+    margin-right: 5px;
+}
+
+nav button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    margin-left: 15px;
+    color: #333;
+}
+
+/* 🖼️ Image Carousel Styling */
+.hero-carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out; /* Smooth slide transition */
+}
+
+.carousel-slide {
+    min-width: 100%; /* Each slide takes up full carousel width */
+    height: 400px; /* before it's auto. Adjust height dynamically */
+    position: relative;
+}
+
+.slide-image {
+    width: 100%;
+    height:400px ;/*before it's auto*/
+    display: block;
+}
+
+.slide-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.slide-text h1 {
+    font-size: 5vw; /* Responsive font size */
+    font-weight: 900;
+}
+
+.slide-text h2 {
+    font-size: 3vw;
+    font-weight: 700;
+}
+
+/* Specific Slide Text Styles for the Polo Slide (Screenshot 3) */
+.slide-text h2.shadow-text {
+    color: transparent;
+    -webkit-text-stroke: 1px white;
+    font-size: 5vw;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+/* Specific Slide Text Styles for the Sale Slide (Screenshot 2) */
+.promo-text h1 {
+    font-size: 6vw;
+    font-weight: 900;
+    color: #B500C9; /* Purple for "Cyber Monday" section */
+    line-height: 1;
+}
+
+.promo-text p {
+    font-size: 2vw;
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+.shop-button {
+    background-color: #E3006F; /* Pink button color */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.5vw;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.shop-button:hover {
+    background-color: #a80053;
+}
+
+
+/* Carousel Navigation Arrows Styling */
+.carousel-nav {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.carousel-nav button {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s, transform 0.1s;
+}
+/* Arrow Hover/Touch Effect */
+.carousel-nav button:hover,
+.carousel-nav button:focus {
+    background-color: #FF6600; /* Change on hover/focus */
+    border-color: #FF6600;
+    transform: scale(1.05);
+}
+
+.arrow-icon {
+    font-size: 18px;
+    color: #333;
+    transition: color 0.3s;
+}
+
+.carousel-nav button:hover .arrow-icon,
+.carousel-nav button:focus .arrow-icon {
+    color: white; /* Arrow color changes on hover/focus */
+}
+
+/* Image Fallbacks: Make sure you use your actual images! */
+.carousel-slide:nth-child(1) .slide-image {
+    /* Background colors for fallbacks, but you must use the images provided! */
+    background-color: orange; 
+}
+.carousel-slide:nth-child(2) .slide-image {
+    background-color: #000;
+}
+.carousel-slide:nth-child(3) .slide-image {
+    background-color: lightblue;
+}
+</style>
+
+</head>
+<body>
+
+    <div class="top-bar-container">
+        <div class="top-bar-text-wrapper">
+            <p class="top-bar-text" id="top-bar-1">
+                <span class="emoji-blink">🛍️</span> Black Friday - Cyber Monday: use code "BFCMDEAL" at checkout for 20% OFF <span class="emoji-blink">🚀</span>
+            </p>
+            <p class="top-bar-text" id="top-bar-2">
+                <span class="emoji-blink">❗</span> Please note: Orders after Dec 4 may face delays, so place your order as soon as possible. <span class="emoji-blink">🚨</span>
+            </p>
+        </div>
+    </div>
+    
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-emoji">🦌</span> 
+                <span class="brand-name">FlexiQuor</span>
+            </div>
+            <nav>
+                <button class="search-icon" aria-label="Search"><span class="icon">🔍</span></button>
+                <button class="cart-icon" aria-label="Shopping Bag"><span class="icon">🛍️</span></button>
+                <button class="menu-icon" aria-label="Menu"><span class="icon">☰</span></button>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-carousel">
+        <div class="carousel-track" id="carousel-track">
+            <div class="carousel-slide" data-title="POWER & PERFORMANCE! HOCKEY JERSEY Collection">
+                <img src="./Hijab 1.jpg" alt="Hockey Jersey Collection Ad" class="slide-image">
+                <div class="slide-text">
+                    <h1>POWER & PERFORMANCE!</h1>
+                    <h2>HOCKEY JERSEY Collection</h2>
+                </div>
+            </div>
+            <div class="carousel-slide" data-title="Black Friday CYBER MONDAY - 20% OFF!">
+                <img src="./Bag 2.jpg" alt="Black Friday Cyber Monday Sale Ad" class="slide-image">
+                <div class="slide-text promo-text">
+                    <h1>Black Friday</h1>
+                    <h1>CYBER MONDAY</h1>
+                    <p>Use code BFCMDEAL to get 20% OFF</p>
+                    <button class="shop-button">SHOP NOW</button>
+                </div>
+            </div>
+            <div class="carousel-slide" data-title="POLO Shirt Collection 2025">
+                <img src="./Adidas Samba.jpg" alt="Polo Shirt Collection Ad" class="slide-image">
+                <div class="slide-text">
+                    <h1>POLO</h1>
+                    <h2 class="shadow-text">Shirt</h2>
+                    <h3>Collection 2025</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-nav">
+            <button class="prev-button" aria-label="Previous Slide">
+                <span class="arrow-icon"><</span>
+            </button>
+            <button class="next-button" aria-label="Next Slide">
+                <span class="arrow-icon">></span>
+            </button>
+        </div>
+    </section>
+
+    <div style="height: 500px; padding: 20px; text-align: center;">
+        <h3>Christmas Collection Section</h3>
+        <p>This is where the rest of the homepage content would go.</p>
+    </div>
+
+ <script>
+document.addEventListener('DOMContentLoaded', () => {
+    // --- 1. Top Bar Animation (Animated Text) ---
+    const topBarWrapper = document.querySelector('.top-bar-text-wrapper');
+    const topBarHeight = document.querySelector('.top-bar-container').offsetHeight;
+    let currentTopBar = 1;
+
+    function animateTopBar() {
+        if (currentTopBar === 1) {
+            // Slide to the second message (Dec 4 deadline)
+            topBarWrapper.style.transform = 'translateY(-${topBarHeight}px)';
+            currentTopBar = 2;
+        } else {
+            // Slide back to the first message (BFCM deal)
+            topBarWrapper.style.transform = 'translateY(0)';
+            currentTopBar = 1;
+        }
+    }
+
+    // Change the text every 5 seconds
+    setInterval(animateTopBar, 5000);
+
+
+    // --- 2. Image Carousel/Slider Functionality ---
+    const track = document.getElementById('carousel-track');
+    const slides = Array.from(track.children);
+    const nextButton = document.querySelector('.next-button');
+    const prevButton = document.querySelector('.prev-button');
+
+    const slideWidth = slides[0].getBoundingClientRect().width;
+    let slideIndex = 0; // Start at the first slide (0)
+
+    // Helper function to set the slide position
+    const setSlidePosition = (index) => {
+        track.style.transform = 'translateX(-' + (index * slideWidth) + 'px)';
+    };
+
+    // Initialize position
+    setSlidePosition(slideIndex);
+
+    // When the Next button is clicked
+    nextButton.addEventListener('click', () => {
+        // Go to the next slide, or loop back to the first if at the end
+        slideIndex = (slideIndex + 1) % slides.length;
+        setSlidePosition(slideIndex);
+    });
+
+    // When the Previous button is clicked
+    prevButton.addEventListener('click', () => {
+        // Go to the previous slide, or loop back to the last if at the start
+        slideIndex = (slideIndex - 1 + slides.length) % slides.length;
+        setSlidePosition(slideIndex);
+    });
+
+    // Optional: Auto-play the carousel
+    // setInterval(() => {
+    //     nextButton.click();
+    // }, 7000);
+
+    // Important: Re-calculate slide width on resize for responsiveness
+    window.addEventListener('resize', () => {
+        const newSlideWidth = slides[0].getBoundingClientRect().width;
+        // Re-set the position based on the new width
+        track.style.transform = 'translateX(-' + (slideIndex * newSlideWidth) + 'px)';
+    });
+});
+</script>
+</body>
+</html>
