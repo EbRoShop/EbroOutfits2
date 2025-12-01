@@ -47,7 +47,7 @@ body {
 }
 
 .emoji-blink {
-    animation: blink 1s infinite; /* Simple blinking animation for emojis */
+    animation: blink 1.5s infinite; /* Simple blinking animation for emojis */
 }
 
 @keyframes blink {
@@ -109,13 +109,13 @@ nav button {
 
 .carousel-slide {
     min-width: 100%; /* Each slide takes up full carousel width */
-    height: 400px; /* before it's auto. Adjust height dynamically */
+    height: 400px; /* Adjust height dynamically */
     position: relative;
 }
 
 .slide-image {
     width: 100%;
-    height:400px ;/*before it's auto*/
+    height: 400px;/*before it's auto*/
     display: block;
 }
 
@@ -291,10 +291,10 @@ nav button {
 
         <div class="carousel-nav">
             <button class="prev-button" aria-label="Previous Slide">
-                <span class="arrow-icon"><</span>
+                <span class="arrow-icon"><b>↩</b></span>
             </button>
             <button class="next-button" aria-label="Next Slide">
-                <span class="arrow-icon">></span>
+                <span class="arrow-icon"><b>↪</b></span>
             </button>
         </div>
     </section>
@@ -303,11 +303,10 @@ nav button {
         <h3>Christmas Collection Section</h3>
         <p>This is where the rest of the homepage content would go.</p>
     </div>
-
- <script>
+    <script>
 document.addEventListener('DOMContentLoaded', () => {
     // --- 1. Top Bar Animation (Animated Text) ---
-    const topBarWrapper = document.querySelector('.top-bar-text-wrapper');
+    const topBarWrapper = document.querySelector('.top-br-text-wrapper');
     const topBarHeight = document.querySelector('.top-bar-container').offsetHeight;
     let currentTopBar = 1;
 
@@ -324,7 +323,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Change the text every 5 seconds
-    setInterval(animateTopBar, 3000);
+    setInterval(animateTopBar, 5000);
 
 
     // --- 2. Image Carousel/Slider Functionality ---
@@ -338,7 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Helper function to set the slide position
     const setSlidePosition = (index) => {
-        track.style.transform = 'tanslateX(-' + (index * slideWidth) + 'px)';
+        track.style.transform = 'translateX(-' + (index * slideWidth) + 'px)';
     };
 
     // Initialize position
